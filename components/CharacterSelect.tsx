@@ -2,6 +2,7 @@
 
 import { Box, TextField, Autocomplete, Button } from "@mui/material";
 import { useState } from "react";
+import Image from "next/image";
 
 interface CharacterSelectProps {
     dataSetter: (data: any) => void;
@@ -33,19 +34,19 @@ export default function CharacterSelect(props: CharacterSelectProps) {
                 getOptionLabel={(option) => option.label}
                 renderOption={(props, option) => (
                     <li {...props} key={option.value} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <img src={option.img} alt={option.label} style={{ width: 30, height: 30 }} />
+                        <Image src={option.img} alt={option.label} width={30} height={30} />
                         {option.label}
                     </li>
                 )}
                 onChange={(_, newValue) => setSelected(newValue)}
                 inputValue={inputValue}
-                onInputChange={(_, newInputValue) => setInputValue(newInputValue)} // Update input state
+                onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
                 renderInput={(params) => (
                     <TextField 
                         {...params} 
-                        placeholder={inputValue.length > 0 ? "" : "Search Character"} // Hide placeholder when typing
+                        placeholder={inputValue.length > 0 ? "" : "Search Character"}
                         variant="outlined"
-                        InputLabelProps={{ shrink: true }} // Prevent label from floating
+                        InputLabelProps={{ shrink: true }}
                         sx={{
                             backgroundColor: "white",
                             borderRadius: "8px",

@@ -3,7 +3,6 @@
 import CharacterSelect from "@/components/CharacterSelect";
 import GuessesTable from "@/components/GuessesTable";
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type GuessBoxProps = {
@@ -60,7 +59,7 @@ export default function Home() {
           width: '100vw',
         }}>
         <Typography variant="h1" component="h1" align="center">HxHdle</Typography>
-        <Typography variant="h5" component="h5" align="center">Guess today's Hunter X Hunter's character!</Typography>
+        <Typography variant="h5" component="h5" align="center">Guess todays Hunter X Hunters character!</Typography>
         <CharacterSelect dataSetter={dataUpdate}></CharacterSelect>
         { data && GuessesTable(data) }
       </Box>
