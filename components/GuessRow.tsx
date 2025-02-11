@@ -4,8 +4,8 @@ import GuessIconBox from './GuessIconBox';
 import GuessBox from './GuessBox';
 
 type GuessBoxProps = {
-    data: string;
-    state: number;
+    data: string[];
+    state: string;
 }
 
 type GuessIconBoxProps = {
@@ -23,7 +23,7 @@ export default function GuessRow(props : GuessRowProps) {
     const { icon, guesses } = props;
 
     return (
-        <Grid2 container component={'div'} size={12} spacing={2} sx={{ width: '100%', height: '100px', minWidth: '400px' }}>
+        <Grid2 container component={'div'} size={12} spacing={2} sx={{ width: '100%', height: '100px', minWidth: '400px', mb: 2 }}>
             <GuessIconBox name={icon.name} file={icon.file} />
             {guesses.map((guess, index) => {
                 return (

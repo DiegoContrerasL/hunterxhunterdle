@@ -2,8 +2,8 @@ import { Grid2, Typography } from "@mui/material";
 import GuessRow from "./GuessRow";
 
 type GuessBoxProps = {
-    data: string;
-    state: number;
+    data: string[];
+    state: string;
 }
 
 type GuessIconBoxProps = {
@@ -24,19 +24,28 @@ export default function GuessesTable(props: GuessesTableProps) {
     const { rows } = props;
 
     return (
-        <Grid2 container spacing={2} sx={{ width: '50%', minWidth: '400px' }}>
+        <Grid2 container spacing={2} sx={{ width: '50%', minWidth: '800px' }}>
             <Grid2 container component={'div'} size={12}>
-                <Grid2 component={'div'} size={3}>
+                <Grid2 component={'div'} size={1.7}>
                     <Typography variant="h6" component="h6" align="center">Character</Typography>
                 </Grid2>
-                <Grid2 component={'div'} size={3}>
-                    <Typography variant="h6" component="h6" align="center">1</Typography>
+                <Grid2 component={'div'} size={1.7}>
+                    <Typography variant="h6" component="h6" align="center">Gender</Typography>
                 </Grid2>
-                <Grid2 component={'div'} size={3}>
-                    <Typography variant="h6" component="h6" align="center">2</Typography>
+                <Grid2 component={'div'} size={1.7}>
+                    <Typography variant="h6" component="h6" align="center">Species</Typography>
                 </Grid2>
-                <Grid2 component={'div'} size={3}>
-                    <Typography variant="h6" component="h6" align="center">3</Typography>
+                <Grid2 component={'div'} size={1.7}>
+                    <Typography variant="h6" component="h6" align="center">State</Typography>
+                </Grid2>
+                <Grid2 component={'div'} size={1.7}>
+                    <Typography variant="h6" component="h6" align="center">Occupation</Typography>
+                </Grid2>
+                <Grid2 component={'div'} size={1.7}>
+                    <Typography variant="h6" component="h6" align="center">Nen Type</Typography>
+                </Grid2>
+                <Grid2 component={'div'} size={1.7}>
+                    <Typography variant="h6" component="h6" align="center">Debut Arc</Typography>
                 </Grid2>
             </Grid2>
             {rows.map((row, index) => {
