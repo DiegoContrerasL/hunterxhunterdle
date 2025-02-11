@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import characters_data from "@/data/characters.json";
 import Image from 'next/image'
+import Cookies from "js-cookie";
 
 type GuessBoxProps = {
   data: string[];
@@ -27,10 +28,15 @@ type GuessesTableProps = {
   rows: GuessRowProps[];
 }
 
-async function getGuesses() {
-  const res = await fetch("/api/cookies", { cache: "no-store" });
-  const data = await res.json();
-  return data.guesses;
+function getGuesses() {
+  const dayData = Cookies.get("dayHxHdle") || "";
+  const today = new Date().toDateString();
+  if (dayData == today) {
+    const guessesData = Cookies.get("guessesHxHdle") || "";
+    return guessesData ? guessesData.split("_") : [];
+  } else {
+    return [];
+  }
 }
 
 function compareArrays(arr1: string[], arr2: string[]): string {
@@ -73,28 +79,20 @@ export default function Home() {
 
   const dataUpdate = (newData: GuessRowProps) => {
     setData((prevData) => ({
-      rows: prevData ? [...prevData.rows, newData] : [newData], // Create a new array to trigger a re-render
+      rows: prevData ? [newData, ...prevData.rows] : [newData], // Create a new array to trigger a re-render
     }));
     const allCorrect = newData.guesses.every(guess => guess.state === 'right');
     setGuessed(allCorrect);
   };
 
   useEffect(() => {
-    async function fetchGuesses() {
-      try {
-        const res = await getGuesses(); // Fetch guesses from API
-        console.log("guesses",res); // Log the retrieved guesses
-        setGuesses(res); // Update state with guesses
-      } catch (error) {
-        console.error("Error fetching guesses:", error);
-      }
-    }
-    fetchGuesses();
+    const res = getGuesses();
+    console.log("guesses",res); // Log the retrieved guesses
+    setGuesses(res); // Update state with guesses
     retrieveAPIData();
   }, [])
 
   useEffect(() => {
-    console.log("guesses useEffect")
     if (guesses.length > 0 && correctCharacter != '0') {
       console.log("entered")
       const rowsData = guesses.map((guess) => 
@@ -134,8 +132,11 @@ export default function Home() {
         ]
       }))
       setData({ rows: rowsData});
+      console.log(guesses.at(0),correctCharacter,guesses.at(0) == correctCharacter)
+      if (guesses.at(0) == correctCharacter) {
+        setGuessed(true);
+      }
     }
-    console.log(data)
   }, [guesses, correctCharacter])
 
   const retrieveAPIData = async () => {

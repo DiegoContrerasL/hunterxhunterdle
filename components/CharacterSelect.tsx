@@ -5,23 +5,38 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import characters_data from "@/data/characters.json"
 import axios from "axios";
+import Cookies from "js-cookie";
 
 interface CharacterSelectProps {
     dataSetter: (data: any) => void;
 }
 
-async function getGuesses() {
-  const res = await fetch("/api/cookies", { cache: "no-store" });
-  const data = await res.json();
-  return data.guesses;
+function getGuesses() {
+  const dayData = Cookies.get("dayHxHdle") || "";
+  const today = new Date().toDateString();
+  if (dayData == today) {
+    const guessesData = Cookies.get("guessesHxHdle") || "";
+    return guessesData ? guessesData.split("_") : [];
+  } else {
+    return [];
+  }
 }
 
-async function setGuess(newGuess: string) {
-    await fetch("/api/cookies", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ newGuess }),
-    });
+function setGuess(newGuess: string) {
+  const dayData = Cookies.get("dayHxHdle") || "";
+  const today = new Date().toDateString();
+
+  if (dayData === today) {
+    const guessesData = Cookies.get("guessesHxHdle") || "";
+    const guessesArray = guessesData ? guessesData.split("_") : [];
+    guessesArray.unshift(newGuess);
+    const newGuessesData = guessesArray.join("_");
+
+    Cookies.set("guessesHxHdle", newGuessesData, { expires: 1 });
+  } else {
+    Cookies.set("guessesHxHdle", newGuess, { expires: 1 });
+    Cookies.set("dayHxHdle", today, { expires: 1 });
+  }
   }
 
 function compareArrays(arr1: string[], arr2: string[]): string {
@@ -99,16 +114,9 @@ export default function CharacterSelect(props: CharacterSelectProps) {
     };
 
     useEffect(() => {
-      async function fetchGuesses() {
-        try {
-          const res = await getGuesses(); // Fetch guesses from API
-          console.log("guesses",res); // Log the retrieved guesses
-          setUsed(res); // Update state with guesses
-        } catch (error) {
-          console.error("Error fetching guesses:", error);
-        }
-      }
-      fetchGuesses();
+      const res = getGuesses(); // Fetch guesses from API
+      console.log("guesses",res); // Log the retrieved guesses
+      setUsed(res); // Update state with guesses
       retrieveAPIData();
     }, [])
 

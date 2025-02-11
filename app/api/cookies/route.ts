@@ -1,12 +1,11 @@
-import { cookies } from "next/headers";
+import Cookies from "js-cookie";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const cookieStore = cookies();
-  const dayData = cookieStore.get("dayHxHdle")?.value || "";
+  const dayData = Cookies.get("dayHxHdle") || "";
   const today = new Date().toDateString();
   if (dayData == today) {
-    const guessesData = cookieStore.get("guessesHxHdle")?.value || "";
+    const guessesData = Cookies.get("guessesHxHdle") || "";
     return NextResponse.json({ guesses: guessesData ? guessesData.split("_") : [] });
   } else {
     return NextResponse.json({ guesses: [] });
@@ -15,20 +14,19 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const { newGuess } = await req.json();
-  const cookieStore = cookies();
-  const dayData = cookieStore.get("dayHxHdle")?.value || "";
+  const dayData = Cookies.get("dayHxHdle") || "";
   const today = new Date().toDateString();
 
   if (dayData === today) {
-    const guessesData = cookieStore.get("guessesHxHdle")?.value || "";
+    const guessesData = Cookies.get("guessesHxHdle") || "";
     const guessesArray = guessesData ? guessesData.split("_") : [];
     guessesArray.push(newGuess);
     const newGuessesData = guessesArray.join("_");
 
-    cookieStore.set("guessesHxHdle", newGuessesData);
+    Cookies.set("guessesHxHdle", newGuessesData, { expires: 1 });
   } else {
-    cookieStore.set("guessesHxHdle", newGuess);
-    cookieStore.set("dayHxHdle", today);
+    Cookies.set("guessesHxHdle", newGuess, { expires: 1 });
+    Cookies.set("dayHxHdle", today, { expires: 1 });
   }
 
   return NextResponse.json({ success: true });
