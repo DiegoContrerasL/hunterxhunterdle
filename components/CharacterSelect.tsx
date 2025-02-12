@@ -75,7 +75,7 @@ export default function CharacterSelect(props: CharacterSelectProps) {
     const [used, setUsed] = useState<string[]>([]);
     const [correctCharacter, setCorrectCharacter] = useState<string>("0");
 
-    const test = true;
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
     const arcs = [
       "Hunter Exam Arc",
@@ -134,7 +134,7 @@ export default function CharacterSelect(props: CharacterSelectProps) {
         const newData = {
           icon: {
             name: characters[selected.value]['name'],
-            file: '/characters/' + selected.value + '.png'
+            file: `${basePath}/characters/${selected.value}.png`
           },
           guesses: [
             {

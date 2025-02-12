@@ -64,6 +64,8 @@ export default function Home() {
   const [guessed, setGuessed] = useState(false);
   const [guesses, setGuesses] = useState<string[]>([])
 
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
   const characters: { [key: string]: { name: string; [key: string]: any } } = characters_data
 
   const arcs = [
@@ -98,7 +100,7 @@ export default function Home() {
         ({
         icon: {
           name: characters[guess]['name'],
-          file: '/characters/' + guess + '.png'
+          file: `${basePath}/characters/${guess}.png`
         },
         guesses: [
           {
@@ -168,7 +170,7 @@ export default function Home() {
         }
         {guessed &&
           <img
-            src={"/characters/" + correctCharacter + ".png"}
+            src={`${basePath}/characters/${correctCharacter}.png`}
             width={100}
             height={100}
             alt=""
