@@ -59,23 +59,24 @@ function compareArrays(arr1: string[], arr2: string[]): string {
 
 const characters: { [key: string]: { name: string; [key: string]: any } } = characters_data
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const optionsDummy = Object.keys(characters).map((key) => ({
     value: key, 
     label: characters[key]['name'],
-    img: "/characters/" + key + ".png"
+    img: `${basePath}/characters/${key}.png`
 }));
 
 export default function CharacterSelect(props: CharacterSelectProps) {
-    const { dataSetter } = props;
-    const [selected, setSelected] = useState<{ value: string, label: string, img: string } | null>(null);
-    const [inputValue, setInputValue] = useState(""); // Track input text
-    const [options, setOptions] = useState(
-      [...optionsDummy].sort((a, b) => a.label.localeCompare(b.label))
+  const { dataSetter } = props;
+  const [selected, setSelected] = useState<{ value: string, label: string, img: string } | null>(null);
+  const [inputValue, setInputValue] = useState(""); // Track input text
+  const [options, setOptions] = useState(
+    [...optionsDummy].sort((a, b) => a.label.localeCompare(b.label))
   );
-    const [used, setUsed] = useState<string[]>([]);
-    const [correctCharacter, setCorrectCharacter] = useState<string>("0");
-
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const [used, setUsed] = useState<string[]>([]);
+  const [correctCharacter, setCorrectCharacter] = useState<string>("0");
+  
 
     const arcs = [
       "Hunter Exam Arc",

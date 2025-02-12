@@ -7,6 +7,8 @@ type GuessBoxProps = {
     state: string;
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function GuessBox(props : GuessBoxProps) {
     const { data, state } = props;
 
@@ -43,9 +45,10 @@ export default function GuessBox(props : GuessBoxProps) {
                 >
                     {data.join(',\n')}
                 </Typography>
-                <Image
-                    src={"/img/arrow.png"}
-                    fill={true}
+                <img
+                    src={`${basePath}/img/arrow.png`}
+                    width={'100%'}
+                    height={'100%'}
                     alt=""
                     style={{position: 'absolute',
                             transform: state == 'lower' ? '' : 'rotate(180deg)',
