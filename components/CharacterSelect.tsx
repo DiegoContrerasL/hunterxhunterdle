@@ -2,7 +2,6 @@
 
 import { Box, TextField, Autocomplete, Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import characters_data from "@/data/characters.json"
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -182,7 +181,7 @@ export default function CharacterSelect(props: CharacterSelectProps) {
                 getOptionLabel={(option) => option.label}
                 renderOption={(props, option) => (
                     <li {...props} key={option.value} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <Image src={option.img} alt={option.label} width={40} height={40} />
+                        <img src={option.img} alt={option.label} width={40} height={40} />
                         {option.label}
                     </li>
                 )}

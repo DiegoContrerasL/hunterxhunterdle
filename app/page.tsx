@@ -6,7 +6,6 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import characters_data from "@/data/characters.json";
-import Image from 'next/image'
 import Cookies from "js-cookie";
 
 type GuessBoxProps = {
@@ -168,7 +167,7 @@ export default function Home() {
           <Typography color="green" fontSize={40} fontWeight={'bold'}>Correct! It was {characters[correctCharacter]['name']}</Typography>
         }
         {guessed &&
-          <Image
+          <img
             src={"/characters/" + correctCharacter + ".png"}
             width={100}
             height={100}
