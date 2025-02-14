@@ -27,37 +27,37 @@ export default function GuessesTable(props: GuessesTableProps) {
         <Grid2 container spacing={2} sx={{ width: '50%', minWidth: '800px' }}>
             <Grid2 container component={'div'} size={12}>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Character</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Character</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Gender</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Gender</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Hair Color</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Hair Color</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Physical Qualities</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Physical Qualities</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">State</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">State</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Affiliations</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Affiliations</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Ocupations</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Ocupations</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Hunter Type</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Hunter Type</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Debut Arc</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Debut Arc</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Debut Episode</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Debut Episode</Typography>
                 </Grid2>
                 <Grid2 component={'div'} size={1.08}>
-                    <Typography variant="h6" fontSize={14} align="center">Nen Type</Typography>
+                    <Typography color="white" variant="h6" fontSize={14} align="center">Nen Type</Typography>
                 </Grid2>
             </Grid2>
             {rows.map((row, index) => {
