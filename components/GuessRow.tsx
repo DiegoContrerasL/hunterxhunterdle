@@ -1,10 +1,9 @@
-import { Typography } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
 import GuessIconBox from './GuessIconBox';
 import GuessBox from './GuessBox';
 
 type GuessBoxProps = {
-    data: string[];
+    data: string[] | number;
     state: string;
 }
 
@@ -23,7 +22,7 @@ export default function GuessRow(props : GuessRowProps) {
     const { icon, guesses } = props;
 
     return (
-        <Grid2 container component={'div'} size={12} spacing={2} sx={{ width: '100%', height: '100px', minWidth: '400px', mb: 2 }}>
+        <Grid2 container component={'div'} size={12} spacing={1} sx={{ width: '100%', height: '75px', minWidth: '400px' }}>
             <GuessIconBox name={icon.name} file={icon.file} />
             {guesses.map((guess, index) => {
                 return (

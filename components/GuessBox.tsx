@@ -3,17 +3,27 @@ import Box from '@mui/material/Box';
 import Image from 'next/image'
 
 type GuessBoxProps = {
-    data: string[];
+    data: string[] | number;
     state: string;
 }
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
+const getFontSize = (data: string | string[]) => {
+    const text = Array.isArray(data) ? data.join(' ') : data;
+    const charCount = text.length; // Count total characters
+
+    if (charCount > 25) return '0.6rem'; // Smallest font for large text
+    if (charCount > 8) return '0.7rem';
+    if (charCount > 6) return '0.9rem';
+    return '1.2rem'; // Default largest font for short text
+};
+
 export default function GuessBox(props : GuessBoxProps) {
     const { data, state } = props;
 
     return (
-        <Grid2 component={'div'} size={1.7}>
+        <Grid2 component={'div'} size={1.08}>
             <Box
                 sx={{
                     width: '100%',
@@ -35,15 +45,15 @@ export default function GuessBox(props : GuessBoxProps) {
                     align="center"
                     sx={{
                         fontWeight: 'bold',
-                        overflow: 'hidden',   // Hide overflow text
-                        textOverflow: 'ellipsis', // Show an ellipsis if text overflows
-                        fontSize: 'calc(0.9rem + 0.09vw)', // Dynamically adjust the font size based on viewport width
-                        lineHeight: 1.2, // Ensure the line height adjusts if there are multiple lines
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        fontSize: Array.isArray(data) ? getFontSize(data) : '1.2rem', // Dynamically adjust the font size
+                        lineHeight: 1.2,
                         textShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black',
                         zIndex: 1,
                     }}
                 >
-                    {data.join(',\n')}
+                    {Array.isArray(data) ? data.join(',\n') : data}
                 </Typography>
                 <img
                     src={`${basePath}/img/arrow.png`}

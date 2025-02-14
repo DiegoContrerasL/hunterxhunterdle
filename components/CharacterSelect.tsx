@@ -140,30 +140,49 @@ export default function CharacterSelect(props: CharacterSelectProps) {
           guesses: [
             {
               data: characters[selected.value]['gender'],
-              state: characters[selected.value]['gender'][0] == characters[correctCharacter]['gender'][0] ? 'right' : 'wrong'
+              state: characters[selected.value]['gender'][0] === characters[correctCharacter]['gender'][0] ? 'right' : 'wrong'
             },
             {
-              data: characters[selected.value]['species'],
-              state: characters[selected.value]['species'][0] == characters[correctCharacter]['species'][0] ? 'right' : 'wrong'
+              data: characters[selected.value]['hair_color'],
+              state: compareArrays(characters[selected.value]['hair_color'], characters[correctCharacter]['hair_color'])
             },
             {
-              data: characters[selected.value]['is_alive'],
-              state: characters[selected.value]['is_alive'][0] == characters[correctCharacter]['is_alive'][0] ? 'right' : 'wrong'
+              data: characters[selected.value]['physical_qualities'],
+              state: compareArrays(characters[selected.value]['physical_qualities'], characters[correctCharacter]['physical_qualities'])
+            },
+            {
+              data: characters[selected.value]['state'],
+              state: characters[selected.value]['state'][0] === characters[correctCharacter]['state'][0] ? 'right' : 'wrong'
+            },
+            {
+              data: characters[selected.value]['affiliations'],
+              state: compareArrays(characters[selected.value]['affiliations'], characters[correctCharacter]['affiliations'])
             },
             {
               data: characters[selected.value]['occupation'],
               state: compareArrays(characters[selected.value]['occupation'], characters[correctCharacter]['occupation'])
             },
             {
-              data: characters[selected.value]['nen_type'],
-              state: compareArrays(characters[selected.value]['nen_type'], characters[correctCharacter]['nen_type'])
+              data: characters[selected.value]['hunter_type'],
+              state: compareArrays(characters[selected.value]['hunter_type'], characters[correctCharacter]['hunter_type'])
             },
             {
-              data: characters[selected.value]['introduced_in_arc'],
-              state:  arcs.indexOf(characters[selected.value]['introduced_in_arc'][0]) == arcs.indexOf(characters[correctCharacter]['introduced_in_arc'][0]) ?
+              data: characters[selected.value]['debut_arc'],
+              state:  arcs.indexOf(characters[selected.value]['debut_arc'][0]) == arcs.indexOf(characters[correctCharacter]['debut_arc'][0]) ?
                       'right' :
-                      arcs.indexOf(characters[selected.value]['introduced_in_arc'][0]) > arcs.indexOf(characters[correctCharacter]['introduced_in_arc'][0]) ?
+                      arcs.indexOf(characters[selected.value]['debut_arc'][0]) > arcs.indexOf(characters[correctCharacter]['debut_arc'][0]) ?
                       'higher' : 'lower'
+            },
+            {
+              data: characters[selected.value]['debut_episode'],
+              state:  characters[selected.value]['debut_episode'] == characters[correctCharacter]['debut_episode'] ?
+                      'right' :
+                      characters[selected.value]['debut_episode'] > characters[correctCharacter]['debut_episode'] ?
+                      'higher' : 'lower'
+            },
+            {
+              data: characters[selected.value]['nen_type'],
+              state: compareArrays(characters[selected.value]['nen_type'], characters[correctCharacter]['nen_type'])
             }
           ]
         }

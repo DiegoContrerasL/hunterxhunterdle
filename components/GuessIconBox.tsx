@@ -1,21 +1,32 @@
 import { Grid2, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
+import { useState } from 'react';
 
 type GuessIconBoxProps = {
     name: string;
     file: string;
-}
+};
 
-export default function GuessIconBox(props : GuessIconBoxProps) {
+const getFontSize = (data: string) => {
+    const charCount = data.length;
+    if (charCount > 25) return '0.6rem';
+    if (charCount > 8) return '0.7rem';
+    if (charCount > 6) return '0.9rem';
+    return '1.2rem';
+};
+
+export default function GuessIconBox(props: GuessIconBoxProps) {
     const { name, file } = props;
+    const [hover, setHover] = useState(false);
 
     return (
-        <Grid2 component={'div'} size={1.7}>
+        <Grid2 component={'div'} size={1.08}>
             <Box
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
                 sx={{
-                    width: '100%',
-                    height: '100%',
-                    aspectRatio: '1',
+                    width: '75px',
+                    height: '75px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -25,30 +36,42 @@ export default function GuessIconBox(props : GuessIconBoxProps) {
                     borderColor: 'white',
                     borderRadius: 1,
                     boxShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black',
-                    position: 'relative'
+                    position: 'relative',
+                    overflow: 'hidden'
                 }}>
-                <Typography
-                    align="center"
-                    sx={{
-                        fontWeight: 'bold',
-                        overflow: 'hidden',   // Hide overflow text
-                        textOverflow: 'ellipsis', // Show an ellipsis if text overflows
-                        fontSize: 'calc(0.9rem + 0.09vw)', // Dynamically adjust the font size based on viewport width
-                        lineHeight: 1.2, // Ensure the line height adjusts if there are multiple lines
-                        textShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black',
-                        zIndex: 1,
-                    }}
-                >
-                    {name}
-                </Typography>
                 <img
                     src={file}
-                    height={'100%'}
-                    width={'100%'}
                     alt={name}
-                    style={{position: 'absolute'
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0
                     }}
                 />
+                {hover && (
+                    <Typography
+                        align="center"
+                        sx={{
+                            fontWeight: 'bold',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            fontSize: getFontSize(name),
+                            lineHeight: 1.2,
+                            textShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black',
+                            zIndex: 2,
+                            position: 'absolute',
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                            color: 'white',
+                            padding: '4px',
+                            borderRadius: '4px'
+                        }}
+                    >
+                        {name}
+                    </Typography>
+                )}
             </Box>
         </Grid2>
     );

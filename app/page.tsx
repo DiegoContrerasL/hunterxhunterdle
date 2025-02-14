@@ -108,27 +108,46 @@ export default function Home() {
             state: characters[guess]['gender'][0] === characters[correctCharacter]['gender'][0] ? 'right' : 'wrong'
           },
           {
-            data: characters[guess]['species'],
-            state: characters[guess]['species'][0] === characters[correctCharacter]['species'][0] ? 'right' : 'wrong'
+            data: characters[guess]['hair_color'],
+            state: compareArrays(characters[guess]['hair_color'], characters[correctCharacter]['hair_color'])
           },
           {
-            data: characters[guess]['is_alive'],
-            state: characters[guess]['is_alive'][0] === characters[correctCharacter]['is_alive'][0] ? 'right' : 'wrong'
+            data: characters[guess]['physical_qualities'],
+            state: compareArrays(characters[guess]['physical_qualities'], characters[correctCharacter]['physical_qualities'])
+          },
+          {
+            data: characters[guess]['state'],
+            state: characters[guess]['state'][0] === characters[correctCharacter]['state'][0] ? 'right' : 'wrong'
+          },
+          {
+            data: characters[guess]['affiliations'],
+            state: compareArrays(characters[guess]['affiliations'], characters[correctCharacter]['affiliations'])
           },
           {
             data: characters[guess]['occupation'],
             state: compareArrays(characters[guess]['occupation'], characters[correctCharacter]['occupation'])
           },
           {
-            data: characters[guess]['nen_type'],
-            state: compareArrays(characters[guess]['nen_type'], characters[correctCharacter]['nen_type'])
+            data: characters[guess]['hunter_type'],
+            state: compareArrays(characters[guess]['hunter_type'], characters[correctCharacter]['hunter_type'])
           },
           {
-            data: characters[guess]['introduced_in_arc'],
-            state:  arcs.indexOf(characters[guess]['introduced_in_arc'][0]) == arcs.indexOf(characters[correctCharacter]['introduced_in_arc'][0]) ?
+            data: characters[guess]['debut_arc'],
+            state:  arcs.indexOf(characters[guess]['debut_arc'][0]) == arcs.indexOf(characters[correctCharacter]['debut_arc'][0]) ?
                     'right' :
-                    arcs.indexOf(characters[guess]['introduced_in_arc'][0]) > arcs.indexOf(characters[correctCharacter]['introduced_in_arc'][0]) ?
+                    arcs.indexOf(characters[guess]['debut_arc'][0]) > arcs.indexOf(characters[correctCharacter]['debut_arc'][0]) ?
                     'higher' : 'lower'
+          },
+          {
+            data: characters[guess]['debut_episode'],
+            state:  characters[guess]['debut_episode'] == characters[correctCharacter]['debut_episode'] ?
+                    'right' :
+                    characters[guess]['debut_episode'] > characters[correctCharacter]['debut_episode'] ?
+                    'higher' : 'lower'
+          },
+          {
+            data: characters[guess]['nen_type'],
+            state: compareArrays(characters[guess]['nen_type'], characters[correctCharacter]['nen_type'])
           }
         ]
       }))
@@ -163,7 +182,7 @@ export default function Home() {
           mb: 15
         }}>
         <Typography variant="h1" component="h1" align="center">HxHdle</Typography>
-        <Typography variant="h5" component="h5" align="center">Guess todays Hunter X Hunters character!</Typography>
+        <Typography variant="h5" component="h5" align="center">Guess today's Hunter X Hunter character!</Typography>
         {!guessed && <CharacterSelect dataSetter={dataUpdate}></CharacterSelect>}
         {guessed &&
           <Typography color="green" fontSize={40} fontWeight={'bold'}>Correct! It was {characters[correctCharacter]['name']}</Typography>
