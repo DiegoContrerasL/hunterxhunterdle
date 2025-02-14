@@ -75,7 +75,7 @@ export default function CharacterSelect(props: CharacterSelectProps) {
     [...optionsDummy].sort((a, b) => a.label.localeCompare(b.label))
   );
   const [used, setUsed] = useState<string[]>([]);
-  const [correctCharacter, setCorrectCharacter] = useState<string>("0");
+  const [correctCharacter, setCorrectCharacter] = useState<string>("1");
   
 
     const arcs = [

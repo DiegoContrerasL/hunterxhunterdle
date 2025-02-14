@@ -57,6 +57,20 @@ function compareArrays(arr1: string[], arr2: string[]): string {
   return "wrong"; // No common elements
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+const characters: { [key: string]: { name: string; [key: string]: any } } = characters_data
+
+const arcs = [
+  "Hunter Exam Arc",
+  "Zoldyck Family Arc",
+  "Heavens Arena Arc",
+  "Yorknew City Arc",
+  "Greed Island Arc",
+  "Chimera Ant Arc",
+  "13th Hunter Chairman Election Arc"
+];
+
 export default function Home() {
   const [data, setData] = useState<GuessesTableProps>();
   const [correctCharacter, setCorrectCharacter] = useState<string>("0");
@@ -64,19 +78,6 @@ export default function Home() {
   const [guessed, setGuessed] = useState(false);
   const [guesses, setGuesses] = useState<string[]>([])
 
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
-  const characters: { [key: string]: { name: string; [key: string]: any } } = characters_data
-
-  const arcs = [
-    "Hunter Exam Arc",
-    "Zoldyck Family Arc",
-    "Heavens Arena Arc",
-    "Yorknew City Arc",
-    "Greed Island Arc",
-    "Chimera Ant Arc",
-    "13th Hunter Chairman Election Arc"
-  ];
 
   const dataUpdate = (newData: GuessRowProps) => {
     setData((prevData) => ({
