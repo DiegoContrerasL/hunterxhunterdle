@@ -50,6 +50,7 @@ export default function GuessBox(props : GuessBoxProps) {
                         fontSize: Array.isArray(data) ? getFontSize(data) : '1.2rem', // Dynamically adjust the font size
                         lineHeight: 1.2,
                         textShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black',
+                        color: 'white',
                         zIndex: 1,
                     }}
                 >

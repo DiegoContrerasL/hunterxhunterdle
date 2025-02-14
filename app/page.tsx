@@ -180,10 +180,11 @@ export default function Home() {
           gap: 2,
           height: '100vh',
           width: '100vw',
-          mb: 15
+          mb: 15,
+          bgcolor: 'black'
         }}>
-        <Typography variant="h1" component="h1" align="center">HxHdle</Typography>
-        <Typography variant="h5" component="h5" align="center">Guess today{"'"}s Hunter X Hunter character!</Typography>
+        <Typography variant="h1" component="h1" align="center" color="white">HxHdle</Typography>
+        <Typography variant="h5" component="h5" align="center" color="white">Guess today{"'"}s Hunter X Hunter character!</Typography>
         {!guessed && <CharacterSelect dataSetter={dataUpdate}></CharacterSelect>}
         {guessed &&
           <Typography color="green" fontSize={40} fontWeight={'bold'}>Correct! It was {characters[correctCharacter]['name']}</Typography>
@@ -197,7 +198,7 @@ export default function Home() {
           />
         }
         { data && GuessesTable(data) }
-        <Typography variant="h5" component="h5" align="center">{characters[lastCharacter]? "The last character was: " + characters[lastCharacter]['name']: ""}</Typography>
+        <Typography variant="h5" component="h5" align="center" color="white">{characters[lastCharacter]? "The last character was: " + characters[lastCharacter]['name']: ""}</Typography>
       </Box>
     </main>
   );
