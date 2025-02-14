@@ -183,7 +183,7 @@ export default function Home() {
           mb: 15
         }}>
         <Typography variant="h1" component="h1" align="center">HxHdle</Typography>
-        <Typography variant="h5" component="h5" align="center">Guess today's Hunter X Hunter character!</Typography>
+        <Typography variant="h5" component="h5" align="center">Guess today{"'"}s Hunter X Hunter character!</Typography>
         {!guessed && <CharacterSelect dataSetter={dataUpdate}></CharacterSelect>}
         {guessed &&
           <Typography color="green" fontSize={40} fontWeight={'bold'}>Correct! It was {characters[correctCharacter]['name']}</Typography>
