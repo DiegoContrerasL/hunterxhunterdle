@@ -59,13 +59,13 @@ export default function GuessBox(props : GuessBoxProps) {
                     {Array.isArray(data) ? data.join(',\n') : data}
                 </Typography>
                 <img
-                    src={`${basePath}/img/arrow.png`}
+                    src={`${basePath}/img/${state == 'right' ? 'check' : state == 'wrong' ? 'cross' : 'arrow'}.png`}
                     width={'100%'}
                     height={'100%'}
                     alt=""
                     style={{position: 'absolute',
-                            transform: state == 'lower' ? '' : 'rotate(180deg)',
-                            visibility: state == 'lower' || state == 'higher' ? 'visible' : 'hidden'
+                            transform: state == 'higher' ? 'rotate(180deg)' : '',
+                            visibility: state == 'partial' ? 'hidden' : 'visible'
                     }}
                 />
             </Box>
