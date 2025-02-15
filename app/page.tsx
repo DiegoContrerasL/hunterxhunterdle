@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import characters_data from "@/data/characters.json";
 import Cookies from "js-cookie";
+import InformationTable from "@/components/InformationTable";
 
 type GuessBoxProps = {
   data: string[];
@@ -177,14 +178,15 @@ export default function Home() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 2,
+          gap: 3,
           height: '100vh',
           width: '100vw',
           mb: 15,
           bgcolor: 'black'
         }}>
-        <Typography variant="h1" component="h1" align="center" color="white">HxHdle</Typography>
-        <Typography variant="h5" component="h5" align="center" color="white">Guess today{"'"}s Hunter X Hunter character!</Typography>
+        <Typography variant="h1" align="center" color="white">HxHdle</Typography>
+        <Typography variant="h5" align="center" color="white">Guess today{"'"}s Hunter X Hunter character!</Typography>
+        <Typography fontSize={14} align="center" color="white">(Data corresponding to the status of the last episode of the 2011 anime version)</Typography>
         {!guessed && <CharacterSelect dataSetter={dataUpdate}></CharacterSelect>}
         {guessed &&
           <Typography color="green" fontSize={40} fontWeight={'bold'}>Correct! It was {characters[correctCharacter]['name']}</Typography>
@@ -198,6 +200,7 @@ export default function Home() {
           />
         }
         { data && GuessesTable(data) }
+        <InformationTable/>
         <Typography variant="h5" component="h5" align="center" color="white">{characters[lastCharacter]? "The last character was: " + characters[lastCharacter]['name']: ""}</Typography>
       </Box>
     </main>

@@ -28,6 +28,8 @@ export default function GuessBox(props : GuessBoxProps) {
                 sx={{
                     width: '100%',
                     height: '100%',
+                    minWidth: '75px',
+                    minHeight: '75px',
                     aspectRatio: '1',
                     display: 'flex',
                     flexDirection: 'column',
